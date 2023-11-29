@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enfermedades Cardiacas</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 40px;
+            font-size: 28px;
+        }
+
+        @media screen and (min-width: 600px) {
+            /* Estilos para pantallas más grandes (ancho mínimo de 600px) */
+            h1 {
+                font-size: 36px; /* Ajusta el tamaño de la letra según tus preferencias */
+                margin-left: 20px; /* Márgenes laterales */
+                margin-right: 20px;
+            }
+        }
+
+        .caracteristicas-container {
+            background-color: #7ec8e3; /* Color celeste */
+            padding: 20px;
+            border-radius: 10px; /* Bordes redondeados */
+            display: inline-block; /* Para que el contenedor se ajuste al contenido */
+        }
+
+        p {
+            font-size: 20px; /* Tamaño de letra para el párrafo */
+            margin: 25px; /* Márgenes */
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        .enfermedad-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .enfermedad-button {
+            flex: 0 0 calc(20% - 20px);
+            margin: 10px;
+            padding: 15px;
+            background-color: #db370e; /* Color verde para los botones */
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .caracteristicas {
+            display: none;
+            margin-top: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        h4 {
+            margin-bottom: 5px;
+        }
+
+        .caracteristicas-texto {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        .caracteristicas-container {
+            background-color: #7ec8e3; /* Color celeste */
+            padding: 20px;
+            border-radius: 10px; /* Bordes redondeados */
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 20px;
+            text-align: left;
+        }
+
+        h3 {
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin: 0;
+        }
+    </style>
+    
+
+    
+
+
+</head>
+<body>
+
+    <h1>Selection of Characteristics of Heart Diseases</h1>
+    <p>
+        In the next window, 7 parameters will be presented, you must choose the one that is 
+        most appropriate for your patient and at the end you will be able to see which could be the heart disease(s) that your patient has.
+    </p>
+    <div class="caracteristicas-container">
+        <label for="heartRate">Heart Rate:</label>
+        <select id="heartRate">
+            <option value="72">72</option>
+            <option value="54">54</option>
+            <option value="138">138</option>
+            <option value="78">78</option>
+            <option value="48">48</option>
+            <option value="54">54</option>
+            <option value="84">84</option>
+            <option value="180">180</option>
+            <option value="90">90</option>
+            <option value="75">75</option>
+            <option value="60">60</option>
+            <option value="74">74</option>
+            <option value="48">48</option>
+            <option value="60">60</option>
+            <option value="38">38</option>
+            <option value="36">36</option>
+            <option value="84">84</option>
+            <option value="48">48</option>
+            <option value="82">82</option>
+            <option value="186">186</option>
+            <option value="78">78</option>
+            <option value="68">68</option>
+            <option value="36">36</option>
+            <option value="84">84</option>
+            <option value="210">210</option>
+            <option value="0">0</option>
+            <option value="80">80</option>
+          
+        </select>
+
+        <label for="Pwave">P Wave:</label>
+        <select id="Pwave">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+
+        <label for="Twave">T Wave:</label>
+        <select id="Twave">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+
+        <label for="PRinterval">PR Interval:</label>
+        <select id="PRinterval">
+            <option value="normal">Normal</option>
+            <option value="absent">Absent</option>
+            <option value="variable">Variable</option>
+            <option value="extended">Extended</option>
+
+        </select>
+
+        <label for="QRScomplex">QRS Complex:</label>
+        <select id="QRScomplex">
+            <option value="normal">Normal</option>
+            <option value="absent">Absent</option>
+            <option value="variable">Variable</option>
+            <option value="extended">Extended</option>
+            
+        </select>
+
+        <label for="STsegment">ST Segment:</label>
+        <select id="STsegment">
+            <option value="normal">Normal</option>
+            <option value="absent">Absent</option>
+            <option value="variable">Variable</option>
+            
+        </select>
+
+        <label for="chestpain">Chest pain:</label>
+        <select id="chestpain">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+
+        <label for="smoker">Smoker:</label>
+        <select id="smoker">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+
+        <label for="rf">Respiratory difficulty:</label>
+        <select id="rf">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+        
+
+        <input type="button" value="Submit" onclick="determinarEnfermedad()">
+    </div>
+
+    <h2>Result:</h2>
+    <p id="resultado"></p>
+
+    <script>
+        function determinarEnfermedad() 
+        {
+            // Obtener valores seleccionados
+            const heartRate = document.getElementById('heartRate').value;
+            const Pwave = document.getElementById('Pwave').value;
+            const Twave = document.getElementById('Twave').value;
+            const PRinterval = document.getElementById('PRinterval').value;
+            const QRScomplex = document.getElementById('QRScomplex').value;
+            const STsegment = document.getElementById('STsegment').value;
+            const chestpain = document.getElementById('chestpain').value;
+            const smoker = document.getElementById('smoker').value;
+            const rf = document.getElementById('rf').value;
+
+            // Agrega más variables según las características
+
+            // Lógica para determinar la enfermedad (ejemplo simple)
+            let enfermedades = [];
+
+            // Ejemplo: Si el ritmo cardíaco es mayor a 100 y hay onda P y T, se sugiere taquicardia
+            if (parseInt(heartRate) === 72 && Pwave === 'yes' && Twave === 'yes' && PRinterval === 'normal' && QRScomplex === 'normal' 
+            && STsegment === 'normal' &&   chestpain === 'no' && smoker === 'no' && rf === 'no') {
+                enfermedades.push('Regular Sinus Rythm');
+            }
+
+            if (parseInt(heartRate) === 54 && Pwave === 'yes' && Twave === 'yes' && PRinterval === 'normal' && QRScomplex === 'normal' 
+            && STsegment === 'normal' &&   chestpain === 'no' && smoker === 'no' && rf === 'no') {
+                enfermedades.push('Sinus Bradycardia');
+            }
+
+            if (parseInt(heartRate) === 138 && Pwave === 'yes' && Twave === 'yes' && PRinterval === 'normal' && QRScomplex === 'normal' 
+            && STsegment === 'normal' &&   chestpain === 'no' && smoker === 'no' && rf === 'no') {
+                enfermedades.push('Sinus Tachycardia');
+            }
+
+            if (parseInt(heartRate) === 78 && Pwave === 'yes' && Twave === 'yes' && PRinterval === 'normal' && QRScomplex === 'normal' 
+            && STsegment === 'normal' &&   chestpain === 'no' && smoker === 'no' && rf === 'no') {
+                enfermedades.push('Sinus Arrhythmia');
+            }
+
+            if (parseInt(heartRate) === 48 && Pwave === 'yes' && Twave === 'yes' && PRinterval === 'normal' && QRScomplex === 'normal' 
+            && STsegment === 'normal' &&   chestpain === 'no' && smoker === 'no' && rf === 'no') {
+                enfermedades.push('Sinus Exit Block');
+            }
+
+            if (parseInt(heartRate) === 54 && Pwave === 'yes' && Twave === 'yes' && PRinterval === 'absent' && QRScomplex === 'absent' 
+            && STsegment === 'absent' &&   chestpain === 'no' && smoker === 'no' && rf === 'no') {
+                enfermedades.push('Sinus Arrest');
+            }
+
+            if (parseInt(heartRate) === 84 && Pwave === 'yes' && Twave === 'yes' && PRinterval === 'normal' && QRScomplex === 'normal' 
+            && STsegment === 'normal' &&   chestpain === 'no' && smoker === 'no' && rf === 'no') {
+                enfermedades.push('Normal Sinus Rythm with Premature Atrial Complexes');
+            }
+
+            if (parseInt(heartRate) === 180 && Pwave === 'yes' && Twave === 'yes' && PRinterval === 'normal' && QRScomplex === 'normal' 
+            && STsegment === 'normal' &&   chestpain === 'yes' && smoker === 'no' && rf === 'no') {
+                enfermedades.push('Supraventricular Tachycardia');
+            }
+
+            if (parseInt(heartRate) === 90 && Pwave === 'yes' && Twave === 'yes' && PRinterval === 'variable' && QRScomplex === 'variable' 
+            && STsegment === 'variable' &&   chestpain === 'yes' && smoker === 'yes' && rf === 'yes') {
+                enfermedades.push('Atrial Fibrillation');
+            }
+
+            if (parseInt(heartRate) === 75 && Pwave === 'yes' && Twave === 'yes' && PRinterval === 'variable' && QRScomplex === 'variable' 
+            && STsegment === 'variable' &&   chestpain === 'yes' && smoker === 'yes' && rf === 'no') {
+                enfermedades.push('Atrial Flutter');
+            }
+
+            if (parseInt(heartRate) === 60 && Pwave === 'yes' && Twave === 'yes' && PRinterval === 'normal' && QRScomplex === 'normal' 
+            && STsegment === 'normal' &&   chestpain === 'no' && smoker === 'no' && rf === 'no') {
+                enfermedades.push('Paced Atrial rhythm');
+            }
+
+            if (parseInt(heartRate) === 74 && Pwave === 'yes' && Twave === 'yes' && PRinterval === 'extended' && QRScomplex === 'normal' 
+            && STsegment === 'normal' &&   chestpain === 'no' && smoker === 'no' && rf === 'no') {
+                enfermedades.push('NSR with First Degree AV Block');
+            }
+
+            if (parseInt(heartRate) === 48 && Pwave === 'yes' && Twave === 'yes' && PRinterval === 'extended' && QRScomplex === 'normal' 
+            && STsegment === 'normal' &&   chestpain === 'no' && smoker === 'no' && rf === 'no') {
+                enfermedades.push('Second Degree AV Block Type I');
+            }
+
+            if (parseInt(heartRate) === 60 && Pwave === 'yes' && Twave === 'yes' && PRinterval === 'extended' && QRScomplex === 'normal' 
+            && STsegment === 'normal' &&   chestpain === 'no' && smoker === 'no' && rf === 'no') {
+                enfermedades.push('Second Degree AV Block Type II');
+            }
+
+            if (parseInt(heartRate) === 38 && Pwave === 'yes' && Twave === 'yes' && PRinterval === 'extended' && QRScomplex === 'normal' 
+            && STsegment === 'normal' &&   chestpain === 'no' && smoker === 'no' && rf === 'no') {
+                enfermedades.push('Second Degree AV Block with 2:1 Conduction');
+            }
+
+            if (parseInt(heartRate) === 36 && Pwave === 'yes' && Twave === 'yes' && PRinterval === 'extended' && QRScomplex === 'normal' 
+            && STsegment === 'normal' &&   chestpain === 'no' && smoker === 'no' && rf === 'no') {
+                enfermedades.push('Third Degree AV Block');
+            }
+
+            if (parseInt(heartRate) === 84 && Pwave === 'no' && Twave === 'yes' && PRinterval === 'normal' && QRScomplex === 'normal' 
+            && STsegment === 'normal' &&   chestpain === 'no' && smoker === 'no' && rf === 'no') {
+                enfermedades.push('Premature Junctional Complex (PJC)');
+            }
+
+            if (parseInt(heartRate) === 48 && Pwave === 'no' && Twave === 'yes' && PRinterval === 'normal' && QRScomplex === 'normal' 
+            && STsegment === 'normal' &&   chestpain === 'no' && smoker === 'no' && rf === 'no') {
+                enfermedades.push('Junctional Rhythm');
+            }
+
+            if (parseInt(heartRate) === 82 && Pwave === 'no' && Twave === 'yes' && PRinterval === 'normal' && QRScomplex === 'normal' 
+            && STsegment === 'normal' &&   chestpain === 'no' && smoker === 'no' && rf === 'no') {
+                enfermedades.push('Accelerated Junctional');
+            }
+
+            if (parseInt(heartRate) === 186 && Pwave === 'no' && Twave === 'yes' && PRinterval === 'normal' && QRScomplex === 'normal' 
+            && STsegment === 'normal' &&   chestpain === 'no' && smoker === 'no' && rf === 'no') {
+                enfermedades.push('Junctional Tachycardia');
+            }
+
+            if (parseInt(heartRate) === 78 && Pwave === 'yes' && Twave === 'yes' && PRinterval === 'normal' && QRScomplex === 'normal' 
+            && STsegment === 'normal' &&   chestpain === 'no' && smoker === 'no' && rf === 'no') {
+                enfermedades.push('Wandering Pacemaker');
+            }
+
+            if (parseInt(heartRate) === 68 && Pwave === 'yes' && Twave === 'yes' && PRinterval === 'normal' && QRScomplex === 'normal' 
+            && STsegment === 'normal' &&   chestpain === 'yes' && smoker === 'yes' && rf === 'yes') {
+                enfermedades.push('Normal Sinus Rhythm with Premature Ventricular Contractions');
+            }
+
+            if (parseInt(heartRate) === 36 && Pwave === 'no' && Twave === 'yes' && PRinterval === 'normal' && QRScomplex === 'extended' 
+            && STsegment === 'normal' &&   chestpain === 'yes' && smoker === 'no' && rf === 'yes') {
+                enfermedades.push('Idioventricular Rhythm');
+            }
+
+            if (parseInt(heartRate) === 84 && Pwave === 'no' && Twave === 'yes' && PRinterval === 'normal' && QRScomplex === 'extended' 
+            && STsegment === 'normal' &&   chestpain === 'yes' && smoker === 'no' && rf === 'yes') {
+                enfermedades.push('Accelerated Idioventricular Rhythm');
+            }
+
+            if (parseInt(heartRate) === 210 && Pwave === 'no' && Twave === 'yes' && PRinterval === 'absent' && QRScomplex === 'extended' 
+            && STsegment === 'normal' &&   chestpain === 'yes' && smoker === 'yes' && rf === 'yes') {
+                enfermedades.push('Ventricular Tachycardia');
+            }
+
+            if (parseInt(heartRate) === 0 && Pwave === 'no' && Twave === 'no' && PRinterval === 'absent' && QRScomplex === 'absent' 
+            && STsegment === 'absent' &&   chestpain === 'yes' && smoker === 'yes' && rf === 'yes') {
+                enfermedades.push('Ventricular Fibrillation');
+            }
+
+            if (parseInt(heartRate) === 80 && Pwave === 'no' && Twave === 'no' && PRinterval === 'normal' && QRScomplex === 'extended' 
+            && STsegment === 'normal' &&   chestpain === 'no' && smoker === 'no' && rf === 'no') {
+                enfermedades.push('Paced Ventricular Rhythm');
+            }
+
+            
+            
+            // Mostrar resultado
+            mostrarResultado(enfermedades);
+        }
+
+        function mostrarResultado(enfermedades) {
+            const resultadoElement = document.getElementById('resultado');
+            if (enfermedades.length > 0) {
+                resultadoElement.textContent = 'The following disease(s) is suggested: ' + enfermedades.join(', ');
+            } else {
+                resultadoElement.textContent = 'The specific disease could not be determined. Try again!';
+            }
+        }
+    </script>
+
+
+
+
+
+ <!-- Botones de enfermedades -->
+ <div class="enfermedades-buttons">
+    <button class="enfermedad-button" onclick="mostrarCaracteristicas('RegularSinusRythm')">Regular Sinus Rythm</button>
+    <button class="enfermedad-button" onclick="mostrarCaracteristicas('SinusBradycardia')">Sinus Bradycardia</button>
+    <button class="enfermedad-button" onclick="mostrarCaracteristicas('SinusTachycardia')">Sinus Tachycardia</button>
+    <button class="enfermedad-button" onclick="mostrarCaracteristicas('SinusArrhythmia')">Sinus Arrhythmia</button>
+    <button class="enfermedad-button" onclick="mostrarCaracteristicas('SinusExitBlock')">Sinus Exit Block</button>
+    <button class="enfermedad-button" onclick="mostrarCaracteristicas('Sinus Arrest')">Sinus Arrest</button>
+    <button class="enfermedad-button" onclick="mostrarCaracteristicas('NormalSinusRythmwithPrematureAtrialComplexes')">Normal Sinus Rythm with Premature Atrial Complexes</button>
+    <button class="enfermedad-button" onclick="mostrarCaracteristicas('SupraventricularTachycardia')">Supraventricular Tachycardia</button>
+    <button class="enfermedad-button" onclick="mostrarCaracteristicas('AtrialFibrillation')">Atrial Fibrillation</button>
+    <button class="enfermedad-button" onclick="mostrarCaracteristicas('AtrialFlutter')">Atrial Flutter</button>
+    <button class="enfermedad-button" onclick="mostrarCaracteristicas('PacedAtrialrhythm')">Paced Atrial rhythm</button>
+    <button class="enfermedad-button" onclick="mostrarCaracteristicas('NSRwithFirstDegreeAVBlock')">NSR with First Degree AV Block</button>
+    <button class="enfermedad-button" onclick="mostrarCaracteristicas('SecondDegreeAVBlockTypeI')">Second Degree AV Block Type I</button>
+    <button class="enfermedad-button" onclick="mostrarCaracteristicas('SecondDegreeAVBlockTypeII')">Second Degree AV Block Type II</button>
+    <button class="enfermedad-button" onclick="mostrarCaracteristicas('SecondDegreeAVBlockwith2:1Conduction')">Second Degree AV Block with 2:1 Conduction</button>
+    <button class="enfermedad-button" onclick="mostrarCaracteristicas('ThirdDegreeAVBlock')">Third Degree AV Block</button>
+    <button class="enfermedad-button" onclick="mostrarCaracteristicas('PJC')">Premature Junctional Complex (PJC)</button>
+    <button class="enfermedad-button" onclick="mostrarCaracteristicas('JunctionalRhythm')">Junctional Rhythm</button>
+    <button class="enfermedad-button" onclick="mostrarCaracteristicas('AcceleratedJunctional')">Accelerated Junctional</button>
+    <button class="enfermedad-button" onclick="mostrarCaracteristicas('JunctionalTachycardia')">Junctional Tachycardia</button>
+    <button class="enfermedad-button" onclick="mostrarCaracteristicas('WanderingPacemaker')">Wandering Pacemaker</button>
+    <button class="enfermedad-button" onclick="mostrarCaracteristicas('NSRVC')">Normal Sinus Rhythm with Premature Ventricular Contractions</button>
+    <button class="enfermedad-button" onclick="mostrarCaracteristicas('IdioventricularRhythm')">Idioventricular Rhythm</button>
+    <button class="enfermedad-button" onclick="mostrarCaracteristicas('AcceleratedIdioventricularRhythm')">Accelerated Idioventricular Rhythm</button>
+    <button class="enfermedad-button" onclick="mostrarCaracteristicas('VentricularTachycardia')">Ventricular Tachycardia</button>
+    <button class="enfermedad-button" onclick="mostrarCaracteristicas('VentricularFibrillation')">Ventricular Fibrillation</button>
+    <button class="enfermedad-button" onclick="mostrarCaracteristicas('PacedVentricularRhythm')">Paced Ventricular Rhythm</button>
+    
+    <!-- Agrega más botones según sea necesario -->
+ 
+    <!-- Información de características -->
+    <div id="RegularSinusRythm" class="caracteristicas" style="display: none;">
+        <h3>Definition</h3>
+        <p>
+            This is a normal heart rhythm originating from the sinus node in the right atrium of the heart. 
+            It is characterized by a regular rate and rhythm of heartbeats, typically between 60 and 100 beats per minute in adults.
+        </p>
+        <img src="Img1.jpg" alt="Imagen Enfermedad 1">
+
+        <div class="caracteristicas-container">
+            <div>
+                <h3>Medical indications</h3>
+                <p>Not required</p>
+            </div>
+    
+            <div>
+                <h3>Control and recommendations</h3>
+                <p>Not required</p>
+            </div>
+    
+            <div>
+                <h3>Diagnostic</h3>
+                <p>This does not require diagnostic; it is the normal behavior of the heart.</p>
+            </div>
+    
+            <div>
+                <h3>Treatment</h3>
+                <p>This does not require treatment; it is the normal behavior of the heart.</p>
+            </div>
+        </div>
+        
+    </div>    
+
+
+    <div id="SinusBradycardia" class="caracteristicas" style="display: none;">
+        <h3>Definition</h3>
+        <p>
+            Sinus bradycardia occurs when the heart's natural pacemaker, the sinus node, generates electrical signals 
+            slower than a normal rate. It results in a heart rate of less than 60 beats per minute in adults.
+        </p>
+        <img src="Img2.jpg" alt="Imagen Enfermedad 1">
+
+        <div class="caracteristicas-container">
+            <div>
+                <h3>Medical indications</h3>
+                <p>Some medications can help increase heart rate, such as beta-agonists, alpha-2 
+                    adrenergic receptor agonists, and catecholamine reuptake inhibitors.</p>
+            </div>
+    
+            <div>
+                <h3>Control and recommendations</h3>
+                <p>Check your heart rate regularly. Either by taking your pulse or using a portable heart monitor. 
+                    If the heart rate is low, steps should be taken to increase it, such as resting, drinking fluids, and avoiding strenuous physical activity.</p>
+            </div>
+    
+            <div>
+                <h3>Diagnostic</h3>
+                <p>The diagnosis is made through an electrocardiogram.</p>
+            </div>
+    
+            <div>
+                <h3>Treatment</h3>
+                <p>If symptoms are present or the heart rate is too slow and causing problems, 
+                    treatment may include medications or a pacemaker implantation.</p>
+            </div>
+        </div>
+
+        
+                
+    </div>    
+
+    <div id="SinusTachycardia" class="caracteristicas" style="display: none;">
+        <h3>Definition</h3>
+        <p>
+            It is a condition where the sinus node fires electrical signals faster than usual, 
+            leading to a heart rate greater than 100 beats per minute in adults.
+        </p>
+        <img src="Img3.jpg" alt="Imagen Enfermedad 1">
+
+        <div class="caracteristicas-container">
+            <div>
+                <h3>Medical indications</h3>
+                <p>Medicines that slow the heart rate, such as beta blockers, calcium channel blockers, or ablation.</p>
+            </div>
+    
+            <div>
+                <h3>Control and recommendations</h3>
+                <p> Avoid alcohol and caffeine, which can increase your heart rate, or get enough sleep, since sleep can 
+                    help regulate your heart rate.</p>
+            </div>
+    
+            <div>
+                <h3>Diagnostic</h3>
+                <p>The diagnosis is made through an electrocardiogram.</p>
+            </div>
+    
+            <div>
+                <h3>Treatment</h3>
+                <p>Treatment focuses on addressing the underlying cause, such as fever, dehydration, or anxiety. 
+                    In some cases, medications may be prescribed to slow down the heart rate.</p>
+            </div>
+        </div>
+
+        
+                
+    </div>   
+
+        
+                
+    </div>
+
+    <div id="SinusArrhythmia" class="caracteristicas" style="display: none;">
+        <h3>Definition</h3>
+        <p>
+            It is a variation in the heart rate that occurs naturally during breathing. It is a normal phenomenon 
+            and is typically seen in younger individuals. The heart rate increases with inhalation and decreases with exhalation.
+        </p>
+        <img src="Img4.jpg" alt="Imagen Enfermedad 1">
+
+        <div class="caracteristicas-container">
+            <div>
+                <h3>Medical indications</h3>
+                <p>Beta blockers, calcium channel blockers or antiarrhythmics or pacemakers.</p>
+            </div>
+    
+            <div>
+                <h3>Control and recommendations</h3>
+                <p>Monitor your heart rate regularly. Either by taking your pulse or using a portable heart monitor. 
+                    If your heart rate is irregular, you should rest, drink fluids, and avoid strenuous physical activity.</p>
+            </div>
+    
+            <div>
+                <h3>Diagnostic</h3>
+                <p>The diagnosis is made through an electrocardiogram.</p>
+            </div>
+    
+            <div>
+                <h3>Treatment</h3>
+                <p>No treatment is usually necessary because this is often a benign and normal variation in heart rate.</p>
+            </div>
+        </div>
+
+        
+                
+    </div>
+
+    <div id="SinusExitBlock" class="caracteristicas" style="display: none;">
+        <h3>Definition</h3>
+        <p>
+            Occurs when the electrical signals generated by the sinus node fail 
+            to exit the node and reach the atria or ventricles, causing a temporary disruption in the heart's rhythm.
+        <img src="Img5.jpg" alt="Imagen Enfermedad 1">
+
+        <div class="caracteristicas-container">
+            <div>
+                <h3>Medical indications</h3>
+                <p>Medications that help regulate the heart rhythm, such as beta blockers, 
+                    calcium channel blockers, or antiarrhythmics, or consider a pacemaker.</p>
+            </div>
+    
+            <div>
+                <h3>Control and recommendations</h3>
+                <p>Monitor your heart rate regularly. Either by taking your pulse or using a portable heart monitor. 
+                    If your heart rate is irregular, you should rest, drink fluids, and avoid strenuous physical activity.</p>
+            </div>
+    
+            <div>
+                <h3>Diagnostic</h3>
+                <p>The diagnosis is made through an electrocardiogram.</p>
+            </div>
+    
+            <div>
+                <h3>Treatment</h3>
+                <p>Treatment may involve identifying and addressing underlying causes, such as electrolyte imbalances or medication 
+                    side effects. Sometimes, a pacemaker may be recommended to manage severe symptoms or recurrent episodes.</p>
+            </div>
+        </div>
+
+        
+                
+    </div>
+
+    <div id="Sinus Arrest" class="caracteristicas" style="display: none;">
+        <h3>Definition</h3>
+        <p>
+            It is characterized by a pause in the normal electrical activity originating from the sinus node. 
+            This pause can be brief or prolonged, leading to a temporary stoppage of the heartbeat.
+        </p>
+        <img src="Img6.jpg" alt="Imagen Enfermedad 1">
+
+        <div class="caracteristicas-container">
+            <div>
+                <h3>Medical indications</h3>
+                <p>Medications that help regulate the heart rhythm, such as beta blockers, calcium
+                     channel blockers, or antiarrhythmics, or consider a pacemaker.</p>
+            </div>
+    
+            <div>
+                <h3>Control and recommendations</h3>
+                <p>Monitor your heart rate regularly. Either by taking your pulse or using a portable heart monitor. 
+                    If your heart rate is irregular, you should rest, drink fluids, and avoid strenuous physical activity.</p>
+            </div>
+    
+            <div>
+                <h3>Diagnostic</h3>
+                <p>The diagnosis is made through an electrocardiogram.</p>
+            </div>
+    
+            <div>
+                <h3>Treatment</h3>
+                <p>Treatment may involve identifying and addressing underlying causes, such as electrolyte imbalances or 
+                    medication side effects. Sometimes, a pacemaker may be recommended to manage severe symptoms or recurrent episodes.</p>
+            </div>
+        </div>
+
+        
+                
+    </div>
+
+    <div id="NormalSinusRythmwithPrematureAtrialComplexes" class="caracteristicas" style="display: none;">
+        <h3>Definition</h3>
+        <p>
+            This refers to a normal heart rhythm with occasional premature electrical signals originating in the atria. 
+            These premature signals can disrupt the regular rhythm briefly.
+        </p>
+        <img src="Img7.jpg" alt="Imagen Enfermedad 1">
+
+        <div class="caracteristicas-container">
+            <div>
+                <h3>Medical indications</h3>
+                <p>Medications that help regulate the heart rhythm, such as beta blockers, calcium channel blockers, 
+                    antiarrhythmics, or avoiding alcohol and caffeine consumption, can help reduce the frequency of PACs.</p>
+            </div>
+    
+            <div>
+                <h3>Control and recommendations</h3>
+                <p>Monitor your heart rate regularly. Either by taking your pulse or using a portable heart monitor. If your 
+                    heart rate is irregular, you should rest, drink fluids, and avoid strenuous physical activity.</p>
+            </div>
+    
+            <div>
+                <h3>Diagnostic</h3>
+                <p>The diagnosis is made through an electrocardiogram.</p>
+            </div>
+    
+            <div>
+                <h3>Treatment</h3>
+                <p>Treatment may not be necessary in many cases. If symptoms are bothersome or if there are other underlying 
+                    heart conditions, treatment may involve medications or monitoring.</p>
+            </div>
+        </div>
+
+        
+                
+    </div>
+
+    <div id="SupraventricularTachycardia" class="caracteristicas" style="display: none;">
+        <h3>Definition</h3>
+        <p>
+            Supraventricular tachycardia (SVT) is a rapid heart rate originating above the ventricles, often in the atria or 
+            atrioventricular node. It can result in a heart rate significantly higher than the normal range.
+        </p>
+        <img src="Img8.jpg" alt="Imagen Enfermedad 1">
+
+        <div class="caracteristicas-container">
+            <div>
+                <h3>Medical indications</h3>
+                <p>Medications that help regulate the heart rhythm, such as beta blockers, calcium channel blockers, 
+                    antiarrhythmics, or consider cardiac ablation.</p>
+            </div>
+    
+            <div>
+                <h3>Control and recommendations</h3>
+                <p>Monitor your heart rate regularly. Either by taking your pulse or using a portable heart monitor. 
+                    If your heart rate is irregular, you should rest, drink fluids, and avoid strenuous physical activity.</p>
+            </div>
+    
+            <div>
+                <h3>Diagnostic</h3>
+                <p>The diagnosis is made through an electrocardiogram.</p>
+            </div>
+    
+            <div>
+                <h3>Treatment</h3>
+                <p>Treatment options include vagal maneuvers (e.g., bearing down, carotid sinus massage) to try to terminate the arrhythmia. Medications like adenosine, beta-blockers,
+                     or calcium channel blockers may be used to control or prevent SVT. Catheter ablation is a curative treatment option for some types of SVT.</p>
+            </div>
+        </div>
+
+        
+                
+    </div>
+
+    <div id="AtrialFibrillation" class="caracteristicas" style="display: none;">
+        <h3>Definition</h3>
+        <p>
+            It is a common cardiac arrhythmia where the atria (upper chambers of the heart) 
+            fibrillate instead of contracting rhythmically. This irregular electrical activity can lead to an irregular and often rapid heart rate, causing symptoms and increasing the risk of stroke and other complications.
+        </p>
+        <img src="Img9.jpg" alt="Imagen Enfermedad 1">
+
+        <div class="caracteristicas-container">
+            <div>
+                <h3>Medical indications</h3>
+                <p>Medications can help control heart rate and blood pressure, and reduce 
+                    the risk of complications, such as blood clots or considering cardiac ablation.</p>
+            </div>
+    
+            <div>
+                <h3>Control and recommendations</h3>
+                <p>Monitor your heart rate regularly. Either by taking your pulse or using a portable heart monitor. 
+                    If your heart rate is irregular, you should rest, drink fluids, and avoid strenuous physical activity.</p>
+            </div>
+    
+            <div>
+                <h3>Diagnostic</h3>
+                <p>The diagnosis is made through an electrocardiogram.</p>
+            </div>
+    
+            <div>
+                <h3>Treatment</h3>
+                <p>Treatment goals include controlling the heart rate and preventing blood clots. 
+                    Medications like beta-blockers, calcium channel blockers, or antiarrhythmics may be used to control 
+                    heart rate or rhythm. Anticoagulants (blood thinners) are often prescribed to reduce the risk of stroke. 
+                    Cardioversion (shock therapy) may be considered to restore normal rhythm. Catheter ablation or surgical procedures 
+                    may be recommended in certain cases.</p>
+            </div>
+        </div>
+
+        
+                
+    </div>
+
+    <div id="AtrialFlutter" class="caracteristicas" style="display: none;">
+        <h3>Definition</h3>
+        <p>
+            It is a heart rhythm disorder characterized by abnormal, rhythmic electrical activity in the atria of the heart. In Atrial 
+            Flutter, the atria undergo rapid, regular contraction at a much faster rate than normal, usually between 250 and 350 beats per minute. This abnormal electrical activity can affect the atria's ability to effectively pump blood to the ventricles, the main chambers of the heart.
+        </p>
+        <img src="Img10.jpg" alt="Imagen Enfermedad 1">
+
+        <div class="caracteristicas-container">
+            <div>
+                <h3>Medical indications</h3>
+                <p>Medications can help control heart rate and blood pressure, and reduce the risk of complications, 
+                    such as blood clots or considering cardiac ablation.</p>
+            </div>
+    
+            <div>
+                <h3>Control and recommendations</h3>
+                <p>It is recommended that patients with FA should: exercise regularly, maintain a 
+                    healthy weight, limit alcohol intake and quit smoking.</p>
+            </div>
+    
+            <div>
+                <h3>Diagnostic</h3>
+                <p>The diagnosis is made through an electrocardiogram.</p>
+            </div>
+    
+            <div>
+                <h3>Treatment</h3>
+                <p>Treatment depends on the severity of the patient's symptoms. Some medications are antiarrhythmics, 
+                    such as digoxin, amiodarone, and propafenone. Anticoagulants, such as warfarin or dabigatran. Also, catheter ablation is an option to eliminate the source of atrial flutter when medications are ineffective.</p>
+            </div>
+        </div>
+
+        
+                
+    </div>
+
+    <div id="PacedAtrialrhythm" class="caracteristicas" style="display: none;">
+        <h3>Definition</h3>
+        <p>
+            It refers to a heart rhythm in which the electrical signals that control the contraction of the heart's atria are artificially 
+            generated by a cardiac pacemaker. Note the vertical spike before the P wave.
+        </p>
+        <img src="Img11.jpg" alt="Imagen Enfermedad 1">
+
+        <div class="caracteristicas-container">
+            <div>
+                <h3>Medical indications</h3>
+                <p>Medications can help control heart rate and blood pressure, and reduce the risk of complications, such as blood clots or 
+                    considering cardiac ablation.</p>
+            </div>
+    
+            <div>
+                <h3>Control and recommendations</h3>
+                <p>It is recommended that patients: follow their doctor's instructions on pacemaker care. Schedule regular appointments with 
+                    your doctor to monitor your heart rhythm.</p>
+            </div>
+    
+            <div>
+                <h3>Diagnostic</h3>
+                <p>The diagnosis is made through an electrocardiogram.</p>
+            </div>
+    
+            <div>
+                <h3>Treatment</h3>
+                <p>Atrial paced rhythm is a heart rhythm generated by a pacemaker. 
+                    The pacemaker sends an electrical impulse to the sinus node, which starts the heartbeat.</p>
+            </div>
+        </div>
+
+        
+                
+    </div>
+
+    <div id="NSRwithFirstDegreeAVBlock" class="caracteristicas" style="display: none;">
+        <h3>Definition</h3>
+        <p>
+            It describes a situation in which the main heart rhythm is normal and regular (NSR), but there is also a mild delay in the conduction of 
+            electrical signals between the atria and ventricles (first degree atrioventricular block). The significant finding of this rhythm is a 
+            prolonged PR interval of more than 20 seconds.	
+        </p>
+        <img src="Img12.jpg" alt="Imagen Enfermedad 1">
+
+        <div class="caracteristicas-container">
+            <div>
+                <h3>Medical indications</h3>
+                <p>It may cause symptoms, such as palpitations, difficulty breathing, or fainting. Beta blockers, calcium channel blockers, 
+                    antiarrhythmics may be used, or cardiac ablation may be considered.</p>
+            </div>
+    
+            <div>
+                <h3>Control and recommendations</h3>
+                <p> Regular medical follow-up is recommended to control and treat cardiovascular risk factors.</p>
+            </div>
+    
+            <div>
+                <h3>Diagnostic</h3>
+                <p>The diagnosis is made through an electrocardiogram.</p>
+            </div>
+    
+            <div>
+                <h3>Treatment</h3>
+                <p>First-degree atrioventricular block generally does not require specific medication. 
+                    Underlying conditions, such as high blood pressure, must be treated.</p>
+            </div>
+        </div>
+
+        
+                
+    </div>
+
+    <div id="SecondDegreeAVBlockTypeI" class="caracteristicas" style="display: none;">
+        <h3>Definition</h3>
+        <p>
+            It results from a cyclical and progressive conduction delay through the AV junction. 
+            The ECG presents with a cyclical lengthening of the PR interval followed by a dropped QRS - a P
+             wave not partnered with a QRS. The QRS complexes yield an irregular rhythm. It is usually benign 
+             and may be caused by excessive vagal activity, medications, or temporary conditions. However, in 
+             some cases, it may indicate a more serious problem in the heart's electrical conduction.
+        </p>
+        <img src="Img13.jpg" alt="Imagen Enfermedad 1">
+
+        <div class="caracteristicas-container">
+            <div>
+                <h3>Medical indications</h3>
+                <p>Medications that help regulate the heart rhythm, such as beta blockers, 
+                    calcium channel blockers, antiarrhythmics, or consider cardiac ablation.</p>
+            </div>
+    
+            <div>
+                <h3>Control and recommendations</h3>
+                <p>It is recommended to avoid activities that may cause decreased blood flow to the heart and 
+                    report any changes in heart rhythm to your doctor.</p>
+            </div>
+    
+            <div>
+                <h3>Diagnostic</h3>
+                <p>The diagnosis is made through an electrocardiogram.</p>
+            </div>
+    
+            <div>
+                <h3>Treatment</h3>
+                <p>In some cases, medications such as atropine can increase the speed of conduction through the AV node. 
+                    Pacemaker implantation may be considered if symptoms are severe or if there are persistent blockages.</p>
+            </div>
+        </div>
+
+        
+                
+    </div>
+
+    <div id="SecondDegreeAVBlockTypeII" class="caracteristicas" style="display: none;">
+        <h3>Definition</h3>
+        <p>
+            One or more QRS complexes are dropped with PR intervals that do not change (fixed PR interval). This is a disorder in 
+            the electrical conduction of the heart, there is an intermittent blockage in the transmission of electrical signals 
+            from the atrioventricular (AV) node to the ventricles.
+        </p>
+        <img src="Img14.jpg" alt="Imagen Enfermedad 1">
+
+        <div class="caracteristicas-container">
+            <div>
+                <h3>Medical indications</h3>
+                <p>Medications that help regulate the heart rhythm, such as beta blockers, calcium channel blockers, 
+                    antiarrhythmics, or consider cardiac ablation.</p>
+            </div>
+    
+            <div>
+                <h3>Control and recommendations</h3>
+                <p>Patients are advised to avoid activities that may cause decreased blood flow to the heart and to report any changes in heart rhythm to their doctor.</p>
+            </div>
+    
+            <div>
+                <h3>Diagnostic</h3>
+                <p>The diagnosis is made through an electrocardiogram.</p>
+            </div>
+    
+            <div>
+                <h3>Treatment</h3>
+                <p>Patients with type II second-degree AV block may need medications to speed up the heart rate or a pacemaker.</p>
+            </div>
+        </div>
+
+        
+                
+    </div>
+
+    <div id="SecondDegreeAVBlockwith2:1Conduction" class="caracteristicas" style="display: none;">
+        <h3>Definition</h3>
+        <p>
+            Electrical impulses traveling from the atria to the ventricles encounter intermittent blockages, but in this case, 
+            for every two atrial beats (two P waves), only one of them is conducted to the ventricles (a QRS complex), resulting in a 2:1 ratio between the atria and ventricles. 
+        </p>
+        <img src="Img15.jpg" alt="Imagen Enfermedad 1">
+
+        <div class="caracteristicas-container">
+            <div>
+                <h3>Medical indications</h3>
+                <p>Medications that help regulate the heart rhythm, such as beta blockers, calcium channel blockers, 
+                    antiarrhythmics, or consider cardiac ablation.</p>
+            </div>
+    
+            <div>
+                <h3>Control and recommendations</h3>
+                <p>It is recommended to follow the cardiologist's instructions for monitoring and treatment.</p>
+            </div>
+    
+            <div>
+                <h3>Diagnostic</h3>
+                <p>The diagnosis is made through an electrocardiogram.</p>
+            </div>
+    
+            <div>
+                <h3>Treatment</h3>
+                <p>Treatment will depend on the underlying cause. The implantation of a pacemaker may be necessary in some cases.</p>
+            </div>
+        </div>
+
+        
+                
+    </div>
+
+    <div id="ThirdDegreeAVBlock" class="caracteristicas" style="display: none;">
+        <h3>Definition</h3>
+        <p>
+            It is a disorder in the electrical conduction of the heart in which there is no adequate electrical communication between 
+            the atria and ventricles. Lonely P waves - P wave without an accompanied QRS complex chaotic PR interval.
+        </p>
+        <img src="Img16.jpg" alt="Imagen Enfermedad 1">
+
+        <div class="caracteristicas-container">
+            <div>
+                <h3>Medical indications</h3>
+                <p>Medications that help regulate the heart rhythm, such as beta blockers, calcium channel blockers, or consider a pacemaker. </p>
+            </div>
+    
+            <div>
+                <h3>Control and recommendations</h3>
+                <p>It is recommended to follow the specialist's instructions and attend scheduled follow-up appointments.</p>
+            </div>
+    
+            <div>
+                <h3>Diagnostic</h3>
+                <p>The diagnosis is made through an electrocardiogram.</p>
+            </div>
+    
+            <div>
+                <h3>Treatment</h3>
+                <p>Urgent implantation of a permanent pacemaker is the necessary treatment to restore adequate electrical conduction</p>
+            </div>
+        </div>
+
+        
+                
+    </div>
+
+    <div id="PJC" class="caracteristicas" style="display: none;">
+        <h3>Definition</h3>
+        <p>
+            Here the premature QRS complex originates in the atrioventricular (AV) node or in adjacent regions. 
+            In a PJC, the electrical signal that should normally originate in the sinus node (the heart's natural pacemaker) 
+            originates in an abnormal location near the AV node. Characteristics of a PJC include an absent or inverted P wave in lead II; 
+            a shortened PR interval - less than 12 seconds; and the complex comes early or premature.
+        </p>
+        <img src="Img17.jpg" alt="Imagen Enfermedad 1">
+
+        <div class="caracteristicas-container">
+            <div>
+                <h3>Medical indications</h3>
+                <p>Medications, such as diuretics or beta blockers, or consider cardiac ablation.</p>
+            </div>
+    
+            <div>
+                <h3>Control and recommendations</h3>
+                <p>It is recommended in case of persistent symptoms or concern, to seek medical attention for a more complete evaluation.</p>
+            </div>
+    
+            <div>
+                <h3>Diagnostic</h3>
+                <p>The diagnosis is made through an electrocardiogram.</p>
+            </div>
+    
+            <div>
+                <h3>Treatment</h3>
+                <p>PJCs are usually benign and do not require specific medication. The underlying cause, such as stress or 
+                    heart conditions if present, must be addressed.</p>
+            </div>
+        </div>
+
+        
+                
+    </div>
+
+    <div id="JunctionalRhythm" class="caracteristicas" style="display: none;">
+        <h3>Definition</h3>
+        <p>
+            It is a heart rhythm in which the electrical impulses that start the heartbeat come from the AV node or 
+            from areas near this node. This results in a regular heart rhythm, although often slower than normal sinus rhythm. 
+            It has a lack of preceding P waves, narrow or normal QRS complexes, and short or absent PR intervals.
+        </p>
+        <img src="Img18.jpg" alt="Imagen Enfermedad 1">
+
+        <div class="caracteristicas-container">
+            <div>
+                <h3>Medical indications</h3>
+                <p>The junctional rhythm is benign and does not require treatment. However, in some cases, the binding rhythm 
+                    can cause symptoms, such as palpitations, shortness of breath, or fainting. For this, medications are used, 
+                    such as diuretics or beta blockers, or consider cardiac ablation.</p>
+            </div>
+    
+            <div>
+                <h3>Control and recommendations</h3>
+                <p>It is recommended to follow the cardiologist's recommendations and maintain a healthy lifestyle to control cardiovascular risk factors.</p>
+            </div>
+    
+            <div>
+                <h3>Diagnostic</h3>
+                <p>The diagnosis is made through an electrocardiogram.</p>
+            </div>
+    
+            <div>
+                <h3>Treatment</h3>
+                <p>Treatment will depend on the underlying cause and symptoms. May require antiarrhythmic 
+                    medications in specific cases or management of underlying conditions.</p>
+            </div>
+        </div>
+
+        
+                
+    </div>
+
+    <div id="AcceleratedJunctional" class="caracteristicas" style="display: none;">
+        <h3>Definition</h3>
+        <p>
+            This rhythm occurs when the atrioventricular (AV) node takes control of the heart's electrical activity, 
+            resulting in a faster heart rate, typically between 60 and 100 beats per minute.
+        </p>
+        <img src="Img19.jpg" alt="Imagen Enfermedad 1">
+
+        <div class="caracteristicas-container">
+            <div>
+                <h3>Medical indications</h3>
+                <p>Medications that help regulate the heart rhythm, such as beta blockers, calcium channel blockers, or consider cardiac ablation. </p>
+            </div>
+    
+            <div>
+                <h3>Control and recommendations</h3>
+                <p>It is recommended to consult a cardiologist for proper diagnosis and treatment.</p>
+            </div>
+    
+            <div>
+                <h3>Diagnostic</h3>
+                <p>The diagnosis is made through an electrocardiogram.</p>
+            </div>
+    
+            <div>
+                <h3>Treatment</h3>
+                <p>The treatment will depend on the underlying cause. If it is symptomatic or causes problems, 
+                    medications to reduce heart rate or even a pacemaker may be considered.</p>
+            </div>
+        </div>
+
+        
+                
+    </div>
+
+    <div id="JunctionalTachycardia" class="caracteristicas" style="display: none;">
+        <h3>Definition</h3>
+        <p>
+            It represents an increase in heart rate originating from the atrioventricular 
+            (AV) node, with a rate exceeding 100 beats per minute.
+        </p>
+        <img src="Img20.jpg" alt="Imagen Enfermedad 1">
+
+        <div class="caracteristicas-container">
+            <div>
+                <h3>Medical indications</h3>
+                <p>Medications that help regulate the heart rhythm, such as beta blockers, calcium channel blockers, or consider cardiac ablation. </p>
+            </div>
+    
+            <div>
+                <h3>Control and recommendations</h3>
+                <p>Seeking evaluation and treatment management from a cardiac rhythm specialist is recommended. Avoid activities that can trigger 
+                    junctional tachycardia, such as intense exercise, stress, or caffeine. Exercise regularly
+                     to help maintain a healthy heart rate. Maintain a healthy weight.</p>
+            </div>
+    
+            <div>
+                <h3>Diagnostic</h3>
+                <p>The diagnosis is made through an electrocardiogram.</p>
+            </div>
+    
+            <div>
+                <h3>Treatment</h3>
+                <p>Medications can be used to lower heart rate, or in severe cases, catheter ablation may be considered.</p>
+            </div>
+        </div>
+
+        
+                
+    </div>
+
+    <div id="WanderingPacemaker" class="caracteristicas" style="display: none;">
+        <h3>Definition</h3>
+        <p>
+            In this cardiac rhythm, electrical activity originates from multiple locations, including the sinus node, 
+            the atrioventricular node, and nearby tissues, leading to variations in heart rate within the normal range.
+        </p>
+        <img src="Img21.jpg" alt="Imagen Enfermedad 1">
+
+        <div class="caracteristicas-container">
+            <div>
+                <h3>Medical indications</h3>
+                <p>Medications that help regulate the heart rhythm, such as beta blockers, calcium channel blockers, or consider cardiac ablation. </p>
+            </div>
+    
+            <div>
+                <h3>Control and recommendations</h3>
+                <p>See your doctor if you have any symptoms, such as palpitations, difficulty breathing, or fainting and avoid activities that can 
+                    trigger wandering rhythm, such as intense exercise, stress, or caffeine.</p>
+            </div>
+    
+            <div>
+                <h3>Diagnostic</h3>
+                <p>The diagnosis is made through an electrocardiogram.</p>
+            </div>
+    
+            <div>
+                <h3>Treatment</h3>
+                <p>Generally, no treatment is required unless it causes significant symptoms. It is advisable 
+                    to consult a cardiologist if experiencing cardiac symptoms.</p>
+            </div>
+        </div>
+
+        
+                
+    </div>
+
+    <div id="NSRVC" class="caracteristicas" style="display: none;">
+        <h3>Definition</h3>
+        <p>
+            The sinus node functions as expected, but occasional premature ventricular contractions (PVCs) occur as extra heartbeats.
+        </p>
+        <img src="Img22.jpg" alt="Imagen Enfermedad 1">
+
+        <div class="caracteristicas-container">
+            <div>
+                <h3>Medical indications</h3>
+                <p>Medications that help regulate the heart rhythm, such as beta blockers, calcium channel blockers, antiarrhythmics, or consider cardiac ablation.</p>
+            </div>
+    
+            <div>
+                <h3>Control and recommendations</h3>
+                <p>Visit your doctor regularly to have your condition monitored.</p>
+            </div>
+    
+            <div>
+                <h3>Diagnostic</h3>
+                <p>The diagnosis is made through an electrocardiogram.</p>
+            </div>
+    
+            <div>
+                <h3>Treatment</h3>
+                <p>The treatment depends on the frequency and cause. In some cases, no treatment is required, but in others, antiarrhythmic medications may be used.</p>
+            </div>
+        </div>
+
+        
+                
+    </div>
+
+    <div id="IdioventricularRhythm" class="caracteristicas" style="display: none;">
+        <h3>Definition</h3>
+        <p>
+            This rhythm occurs when the sinus node fails to generate electrical impulses, allowing the ventricles to control the heart's electrical activity, 
+            resulting in a slower rate, typically 40 to 50 beats per minute. 
+        </p>
+        <img src="Img23.jpg" alt="Imagen Enfermedad 1">
+
+        <div class="caracteristicas-container">
+            <div>
+                <h3>Medical indications</h3>
+                <p>Antiarrhythmics or cardiac stimulators can be used, considering symptoms that interfere with daily activities.</p>
+            </div>
+    
+            <div>
+                <h3>Control and recommendations</h3>
+                <p>Avoid activities that can trigger idioventricular rhythm, such as intense exercise, stress, or caffeine.</p>
+            </div>
+    
+            <div>
+                <h3>Diagnostic</h3>
+                <p>The diagnosis is made through an electrocardiogram.</p>
+            </div>
+    
+            <div>
+                <h3>Treatment</h3>
+                <p>If it is symptomatic or too slow, a pacemaker may be considered.</p>
+            </div>
+        </div>
+
+        
+                
+    </div>
+
+    <div id="AcceleratedIdioventricularRhythm" class="caracteristicas" style="display: none;">
+        <h3>Definition</h3>
+        <p>
+            Similar to idioventricular rhythm, but slightly faster, generally ranging from 50 to 100 beats per minute.
+        </p>
+        <img src="Img24.jpg" alt="Imagen Enfermedad 1">
+
+        <div class="caracteristicas-container">
+            <div>
+                <h3>Medical indications</h3>
+                <p>AIVR is benign and does not require treatment. However, in some cases, AIVR can cause symptoms, 
+                    such as palpitations, shortness of breath, or fainting. Consider using beta blockers or calcium channel blockers.</p>
+            </div>
+    
+            <div>
+                <h3>Control and recommendations</h3>
+                <p>Visit your doctor regularly to have your condition monitored. Maintain a healthy weight.</p>
+            </div>
+    
+            <div>
+                <h3>Diagnostic</h3>
+                <p>The diagnosis is made through an electrocardiogram.</p>
+            </div>
+    
+            <div>
+                <h3>Treatment</h3>
+                <p>It doesn't always require treatment, but in severe symptomatic cases, a pacemaker may be considered.</p>
+            </div>
+        </div>
+
+        
+                
+    </div>
+
+    <div id="VentricularTachycardia" class="caracteristicas" style="display: none;">
+        <h3>Definition</h3>
+        <p>
+            Similar to idioventricular rhythm, but slightly faster, generally ranging from 50 to 100 beats per minute.
+        </p>
+        <img src="Img25.jpg" alt="Imagen Enfermedad 1">
+
+        <div class="caracteristicas-container">
+            <div>
+                <h3>Medical indications</h3>
+                <p>Symptoms that interfere with daily activities, such as shortness of breath, dizziness, 
+                    or fainting, consider using antiarrhythmics, beta blockers, or calcium channel blockers.</p>
+            </div>
+    
+            <div>
+                <h3>Control and recommendations</h3>
+                <p>See your doctor if you have any symptoms, such as palpitations, difficulty breathing, or fainting.</p>
+            </div>
+    
+            <div>
+                <h3>Diagnostic</h3>
+                <p>The diagnosis is made through an electrocardiogram.</p>
+            </div>
+    
+            <div>
+                <h3>Treatment</h3>
+                <p>It may require emergency defibrillation or electrical cardioversion. Long-term management 
+                    can involve antiarrhythmic medications or even an implantable defibrillator.</p>
+            </div>
+        </div>
+
+        
+                
+    </div>
+
+    <div id="VentricularFibrillation" class="caracteristicas" style="display: none;">
+        <h3>Definition</h3>
+        <p>
+            Ventricular fibrillation is a medical emergency where the heart's ventricles quiver in a disorganized 
+            manner instead of contracting properly, causing an inability to pump blood effectively and potentially life-threatening.
+        </p>
+        <img src="Img26.jpg" alt="Imagen Enfermedad 1">
+
+        <div class="caracteristicas-container">
+            <div>
+                <h3>Medical indications</h3>
+                <p>VF is a medical emergency and should be treated immediately with a defibrillator or CPR.</p>
+            </div>
+    
+            <div>
+                <h3>Control and recommendations</h3>
+                <p>People with VF should have their heart rate, blood pressure, and other vital signs 
+                    monitored regularly by their doctor. This will help ensure that VF is being properly controlled 
+                    and that there are no complications. Also, maintain a healthy lifestyle. This includes eating 
+                    a healthy diet, exercising regularly, and avoiding tobacco and alcohol.</p>
+            </div>
+    
+            <div>
+                <h3>Diagnostic</h3>
+                <p>The diagnosis is made through an electrocardiogram.</p>
+            </div>
+    
+            <div>
+                <h3>Treatment</h3>
+                <p>Immediate defibrillation is required. CPR maneuvers and urgent medical attention are essential.</p>
+            </div>
+        </div>
+
+        
+                
+    </div>
+
+    <div id="PacedVentricularRhythm" class="caracteristicas" style="display: none;">
+        <h3>Definition</h3>
+        <p>
+            This rhythm occurs when an external or internal pacemaker, a medical device, is used to 
+            generate electrical impulses in the ventricles, controlling heart rate and rhythm, overriding the heart's natural electrical system.
+        </p>
+        <img src="Img27.jpg" alt="Imagen Enfermedad 1">
+
+        <div class="caracteristicas-container">
+            <div>
+                <h3>Medical indications</h3>
+                <p>The use of pacemakers may be associated with complications, such as infection, bleeding, 
+                    cardiac perforation and device failure, seek medical advice promptly.</p>
+            </div>
+    
+            <div>
+                <h3>Control and recommendations</h3>
+                <p>Monitor your blood pressure and cholesterol, it is also important to talk to your doctor about 
+                    the best treatment and monitoring options for you.</p>
+            </div>
+    
+            <div>
+                <h3>Diagnostic</h3>
+                <p>The diagnosis is made through an electrocardiogram.</p>
+            </div>
+    
+            <div>
+                <h3>Treatment</h3>
+                <p>Treatment will depend on the reason for ventricular pacing. The pacemaker settings can be adjusted as needed.</p>
+            </div>
+        </div>
+
+        
+                
+    </div>
+
+  
+
+</div>
+
+<script>
+    function mostrarCaracteristicas(enfermedadId) {
+        // Oculta todas las secciones de características
+        var caracteristicas = document.querySelectorAll('.caracteristicas');
+        caracteristicas.forEach(function (element) {
+            element.style.display = 'none';
+        });
+
+        // Muestra la sección de características específica
+        var enfermedad = document.getElementById(enfermedadId);
+        enfermedad.style.display = 'block';
+    }
+</script>
+
+
+
+</body>
+</html>
